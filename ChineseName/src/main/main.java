@@ -13,15 +13,21 @@ import java.io.File;
 
 public class main extends JavaPlugin implements Listener {
     private static main instance;
-    public main() {}
-    public static main getInstance() {return instance;}
-    private  static  YamlConfiguration settings;
+    private static YamlConfiguration settings;
+
+    public main() {
+    }
+
+    public static main getInstance() {
+        return instance;
+    }
+
     public void onEnable() {
         instance = this;
-        File file = new File(main.getInstance().getDataFolder(),"settings.yml");
+        File file = new File(main.getInstance().getDataFolder(), "settings.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
-        if (!file.exists()){
-            main.getInstance().saveResource("settings.yml",false);
+        if (!file.exists()) {
+            main.getInstance().saveResource("settings.yml", false);
         }
         //settings = YamlConfiguration.loadConfiguration(file);
         /*config.options().copyDefaults();
@@ -48,7 +54,7 @@ public class main extends JavaPlugin implements Listener {
 
     @EventHandler
     public void PlayerJoin(PlayerJoinEvent e) {
-        File file = new File(main.getInstance().getDataFolder(),"settings.yml");
+        File file = new File(main.getInstance().getDataFolder(), "settings.yml");
         YamlConfiguration config = YamlConfiguration.loadConfiguration(file);
         if (this.getConfig().getString(e.getPlayer().getName()) != null) {
             e.getPlayer().setDisplayName(this.getConfig().getString(e.getPlayer().getName()) + ChatColor.RESET);
